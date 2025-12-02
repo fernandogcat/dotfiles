@@ -16,3 +16,7 @@ If you already ran the command before, you can use the alias:
 ```sh
 dotfiles
 ```
+
+## Credits
+
+Thanks to [carloscuesta](https://github.com/carloscuesta)'s [dotfiles](https://github.com/carloscuesta/dotfiles) project structure and clear documentation that helped and inspired me to start mine.
