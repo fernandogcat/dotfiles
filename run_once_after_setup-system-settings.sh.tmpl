@@ -53,6 +53,10 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
 echo "🖱️  Set trackpad tracking speed"
 defaults write -g com.apple.trackpad.scaling -float 0.875
 
+echo "⌨️  Set keyboard blazingly fast keyboard repeat rate"
+defaults write -g InitialKeyRepeat -int 13 
+defaults write -g KeyRepeat -int 1         
+
 # Dock
 
 echo "💈  Automatically hide and show the dock"
