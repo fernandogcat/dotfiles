@@ -34,4 +34,28 @@
     "debug.javascript.defaultRuntimeExecutable": {
         "pwa-node": "node"
     },
+    // materialshell theme colors
+    "workbench.colorCustomizations": {
+        "terminal.background": "#151515",
+        "terminal.foreground": "#A1B0B8",
+        "terminalCursor.foreground": "#ee6857",
+        "terminal.selectionBackground": "#323232",
+        "terminal.selectionForeground": "#CFCFCF",
+        "terminal.ansiBlack": "#252525",
+        "terminal.ansiRed": "#FF443E",
+        "terminal.ansiGreen": "#C3D82C",
+        "terminal.ansiYellow": "#FFC135",
+        "terminal.ansiBlue": "#42A5F5",
+        "terminal.ansiMagenta": "#D81B60",
+        "terminal.ansiCyan": "#00ACC1",
+        "terminal.ansiWhite": "#F5F5F5",
+        "terminal.ansiBrightBlack": "#505050",
+        "terminal.ansiBrightRed": "#FF443E",
+        "terminal.ansiBrightGreen": "#C3D82C",
+        "terminal.ansiBrightYellow": "#FFC135",
+        "terminal.ansiBrightBlue": "#42A5F5",
+        "terminal.ansiBrightMagenta": "#D81B60",
+        "terminal.ansiBrightCyan": "#00ACC1",
+        "terminal.ansiBrightWhite": "#F5F5F5"
+    }
 }
