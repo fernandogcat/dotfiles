@@ -22,7 +22,7 @@
     "workbench.fontAliasing": "antialiased",
     "workbench.editor.languageDetection": false,
     "workbench.colorTheme": "Default Dark Modern",
-    "terminal.integrated.fontFamily": "MesloLGS NF, monospace",
+    "terminal.integrated.fontFamily": "MesloLGS Nerd Font Mono, monospace",
     "godot_tools.gdscript_lsp_server_port": 6005,
     "godot_tools.editor_path": "/Applications/Godot-4.3-custom.app/Contents/MacOS/Godot",
     "godotTools.editorPath.godot3": "",
