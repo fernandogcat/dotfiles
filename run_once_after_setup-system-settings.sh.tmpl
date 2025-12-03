@@ -5,33 +5,49 @@ set -eufo pipefail
 echo "🍏  Setting macOS defaults"
 
 osascript -e 'tell application "System Preferences" to quit'
+killall 'System Preferences' &>/dev/null || true
 
 echo "📚  Show the ~/Library folder"
 chflags nohidden ~/Library
 
+# User Interface
+
+echo "🖼️  Set dark mode"
+defaults write NSGlobalDomain AppleInterfaceStyle Dark
+
 # Keyboard
+
+defaults delete com.apple.HIToolbox AppleEnabledInputSources
+defaults delete com.apple.HIToolbox AppleSelectedInputSources
+
+# setup International
 
 echo "⌨️  Set AppleEnabledInputSources (US Keyboard Layout)"
 defaults write com.apple.HIToolbox AppleEnabledInputSources -array \
   '<dict>
     <key>InputSourceKind</key><string>Keyboard Layout</string>
-    <key>KeyboardLayout ID</key><integer>252</integer>
-    <key>KeyboardLayout Name</key><string>ABC</string>
+    <key>KeyboardLayout ID</key><integer>15000</integer>
+    <key>KeyboardLayout Name</key><string>USInternational-PC</string>
   </dict>'
 
-echo "⌨️  Set AppleSelectedInputSources (US Keyboard Layout)"
 defaults write com.apple.HIToolbox AppleSelectedInputSources -array \
   '<dict>
     <key>InputSourceKind</key><string>Keyboard Layout</string>
-    <key>KeyboardLayout ID</key><integer>252</integer>
-    <key>KeyboardLayout Name</key><string>ABC</string>
+    <key>KeyboardLayout ID</key><integer>15000</integer>
+    <key>KeyboardLayout Name</key><string>USInternational-PC</string>
   </dict>'
 
-echo "⌨️  Set AppleCurrentKeyboardLayoutInputSourceID to ABC"
-defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.ABC"
+echo "⌨️  Set AppleCurrentKeyboardLayoutInputSourceID to USInternational-PC"
+defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.USInternational-PC"
+
+# end International
 
 echo "⌨️  Enable keyboard navigation"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+
+echo "⌨️  Set keyboard blazingly fast keyboard repeat rate"
+defaults write -g InitialKeyRepeat -int 20 
+defaults write -g KeyRepeat -int 1         
 
 # Trackpad
 
@@ -52,10 +68,6 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
 
 echo "🖱️  Set trackpad tracking speed"
 defaults write -g com.apple.trackpad.scaling -float 0.875
-
-echo "⌨️  Set keyboard blazingly fast keyboard repeat rate"
-defaults write -g InitialKeyRepeat -int 13 
-defaults write -g KeyRepeat -int 1         
 
 # Dock
 
