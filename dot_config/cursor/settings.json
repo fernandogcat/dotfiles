@@ -1,0 +1,37 @@
+{
+    "editor.fontFamily": "FiraCode-Regular",
+    "editor.fontWeight": "normal",
+    "editor.fontSize": 14,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.wordBasedSuggestions": "off",
+    "editor.renderFinalNewline": "off",
+    "editor.accessibilitySupport": "off",
+    "editor.wordWrap": "on",
+    "files.autoSave": "afterDelay",
+    "files.trimFinalNewlines": true,
+    "files.exclude": {
+        "**/*.uid": true
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "window.zoomLevel": 1,
+    "window.confirmBeforeClose": "keyboardOnly",
+    "window.newWindowProfile": "Default",
+    "workbench.fontAliasing": "antialiased",
+    "workbench.editor.languageDetection": false,
+    "workbench.colorTheme": "Default Dark Modern",
+    "terminal.integrated.fontFamily": "MesloLGS NF, monospace",
+    "godot_tools.gdscript_lsp_server_port": 6005,
+    "godot_tools.editor_path": "/Applications/Godot-4.3-custom.app/Contents/MacOS/Godot",
+    "godotTools.editorPath.godot3": "",
+    "godotTools.editorPath.godot4": "/Applications/Godot-4.5.1-custom.app/Contents/MacOS/Godot",
+    "godotTools.lsp.serverPort": 6005,
+    "git.openRepositoryInParentFolders": "always",
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "debug.javascript.defaultRuntimeExecutable": {
+        "pwa-node": "node"
+    },
+}
