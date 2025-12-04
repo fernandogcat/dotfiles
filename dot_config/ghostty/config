@@ -1,6 +1,6 @@
 window-inherit-font-size=false
 window-padding-x=12
-font-size=20
+font-size=16
 font-family="Consolas"
 bold-is-bright=true
 theme=light:materialshell-light,dark:materialshell-dark
