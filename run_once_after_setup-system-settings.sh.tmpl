@@ -57,16 +57,9 @@ echo "🖱️  Set scroll direction to normal"
 defaults write -g com.apple.swipescrolldirection -bool false
 
 echo "🖱️  Enable trackpad right secondary corner click"
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
-
-echo "🖱️  Disable trackpad tap to click"
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool false
-defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
 
 echo "🖱️  Set trackpad tracking speed"
 defaults write -g com.apple.trackpad.scaling -float 0.875
@@ -92,10 +85,13 @@ echo "📁  Set Finder preferred view style to list"
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 echo "📁 Set Finder to show hidden files"
-defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
+defaults write com.apple.finder "AppleShowAllFiles" -bool true
+
+echo "📁 Set Finder to show file extensions"
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 echo "📁 Set Finder to show pathbar"
-defaults write com.apple.finder "ShowPathbar" -bool "true"
+defaults write com.apple.finder "ShowPathbar" -bool true
 
 echo "📱  Set 'Open at login' applications"
 
