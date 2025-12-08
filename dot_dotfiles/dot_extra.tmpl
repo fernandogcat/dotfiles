@@ -1,5 +1,5 @@
-# FNM
-eval "$(fnm env --use-on-cd)"
+# Mise
+eval "$(mise activate zsh)"
 
 # Zoxide
 eval "$(zoxide init zsh)"
@@ -21,5 +21,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups 
 setopt hist_verify
 
+# Arrow keys for history search
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward

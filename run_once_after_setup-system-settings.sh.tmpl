@@ -61,8 +61,16 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightC
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
+echo "🖱️  Enable trackpad three finger drag"
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+
 echo "🖱️  Set trackpad tracking speed"
 defaults write -g com.apple.trackpad.scaling -float 0.875
+
+echo "🖱️  Use scroll gesture with the Ctrl (^) + Option (⌥) modifier key to zoom"
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 786432
 
 # Dock
 
@@ -98,6 +106,7 @@ echo "📱  Set 'Open at login' applications"
 loginItems=(
   "Raycast"
   "Rectangle"
+  "CleanShot X"
 )
 
 for app in "${loginItems[@]}"; do
