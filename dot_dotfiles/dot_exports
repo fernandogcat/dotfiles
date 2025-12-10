@@ -23,8 +23,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 # Godot
-export GODOT="'$(godotenv godot env path)'"
-export GODOT_VERSIONS="'$(dirname "$(godotenv godot env path)")/../versions/'"
+export GODOT="$(godotenv godot env path | sed 's/ /\\ /g')"
+export GODOT_VERSIONS="$(dirname "$GODOT")/../versions/"
 
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
