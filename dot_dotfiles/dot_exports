@@ -19,5 +19,12 @@ export EZA_COLORS='di=1;34'
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
-# Path
+# Dotnet (installed manually, not via chezmoi, for use with https://github.com/chickensoft-games/GodotEnv)
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+# Godot
+export GODOT="'$(godotenv godot env path)'"
+export GODOT_VERSIONS="'$(dirname "$(godotenv godot env path)")/../versions/'"
+
+# Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
