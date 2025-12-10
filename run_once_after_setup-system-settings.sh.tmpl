@@ -68,10 +68,6 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool t
 echo "🖱️  Set trackpad tracking speed"
 defaults write -g com.apple.trackpad.scaling -float 0.875
 
-echo "🖱️  Use scroll gesture with the Ctrl (^) + Option (⌥) modifier key to zoom"
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 786432
-
 # Dock
 
 echo "💈  Automatically hide and show the dock"
@@ -107,6 +103,7 @@ loginItems=(
   "Raycast"
   "Rectangle"
   "CleanShot X"
+  "Ice"
 )
 
 for app in "${loginItems[@]}"; do
@@ -117,5 +114,11 @@ for app in "${loginItems[@]}"; do
     echo "❌  $app not found in /Applications"
   fi
 done
+
+echo "🖱️  Use scroll gesture with the Ctrl (^) + Option (⌥) modifier key to zoom"
+# If these lines give an error it could be because it's needed to give full disk access to the terminal, see: https://github.com/nix-darwin/nix-darwin/issues/1049#issuecomment-2323300537
+
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true || echo "⚠️ 🆘  Failed to set closeViewScrollWheelToggle"
+defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 786432 || echo "⚠️ 🆘  Failed to set closeViewScrollWheelModifiersInt"
 
 {{ end -}}
