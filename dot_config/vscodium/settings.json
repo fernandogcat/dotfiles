@@ -18,7 +18,7 @@
 	"workbench.editor.languageDetection": false,
 	"terminal.integrated.fontFamily": "MesloLGS NF, monospace",
 	"godotTools.editorPath.godot3": "",
-	"godotTools.editorPath.godot4": "/$HOME/Library/Application Support/godotenv/godot/bin/godot",
+	"godotTools.editorPath.godot4": "\"$HOME/Library/Application Support/godotenv/godot/bin/godot\"",
 	"godotTools.lsp.serverPort": 6005,
 	"git.openRepositoryInParentFolders": "always",
 	"gitlens.codeLens.enabled": false,
