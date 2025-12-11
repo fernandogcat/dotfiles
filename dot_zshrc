@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Loading dotfiles
-for file in ~/.dotfiles/.{aliases,functions,exports,extra}; do
+for file in ~/.dotfiles/.{exports,aliases,functions,extra}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
