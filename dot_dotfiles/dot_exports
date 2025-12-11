@@ -24,7 +24,7 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 
 # Godot
 export GODOT="$(godotenv godot env path | sed 's/ /\\ /g')"
-export GODOT_VERSIONS="$(dirname "$GODOT")/../versions/"
+export GODOT_VERSIONS="$(dirname "$GODOT")/../versions"
 
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
