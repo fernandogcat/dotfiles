@@ -16,7 +16,7 @@
 	"window.newWindowProfile": "Default",
 	"workbench.fontAliasing": "antialiased",
 	"workbench.editor.languageDetection": false,
-	"terminal.integrated.fontFamily": "MesloLGS NF, monospace",
+	"terminal.integrated.fontFamily": "MesloLGS Nerd Font Mono, monospace",
 	"godotTools.editorPath.godot3": "",
 	"godotTools.editorPath.godot4": "\"/$HOME/Library/Application Support/godotenv/godot/bin/godot\"",
 	"godotTools.lsp.serverPort": 6005,

@@ -1,7 +1,11 @@
+[init]
+  defaultBranch = main
+
 [user]
   name = fernandogcat
   email = {{ .email }}
   signingkey = {{ .chezmoi.homeDir }}/.ssh/{{ .gitSigningKeyName }}.pub
+
 [alias]
   # Log
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
