@@ -73,4 +73,5 @@
         "**/.ssh/id_*",
         "**/.cursor/mcp.json"
     ],
+    "cursor.cpp.disabledLanguages": []
 }
