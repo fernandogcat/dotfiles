@@ -7,6 +7,11 @@
 .LSOverride
 .AppleDouble
 
+# Common project settings
+
+.env
+!/.env.example
+
 # Node.js
 
 npm-debug.log*
