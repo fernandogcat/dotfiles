@@ -55,5 +55,22 @@
         "terminal.ansiBrightMagenta": "#D81B60",
         "terminal.ansiBrightCyan": "#00ACC1",
         "terminal.ansiBrightWhite": "#F5F5F5"
-    }
+    },
+    "cursor.general.globalCursorIgnoreList": [
+        "**/.env",
+        "**/credentials.json",
+        "**/credentials.*.json",
+        "**/secret.json",
+        "**/secrets.json",
+        "**/*.key",
+        "**/*.pem",
+        "**/*.pfx",
+        "**/*.p12",
+        "**/*.crt",
+        "**/*.cer",
+        "**/id_rsa",
+        "**/id_dsa",
+        "**/.ssh/id_*",
+        "**/.cursor/mcp.json"
+    ],
 }
