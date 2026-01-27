@@ -28,3 +28,6 @@ export GODOT_VERSIONS="$(dirname "$GODOT")/../versions"
 
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
+
+# Cursor agent
+export PATH="$HOME/.local/bin:$PATH"
