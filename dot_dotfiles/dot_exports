@@ -31,3 +31,6 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 # Cursor agent
 export PATH="$HOME/.local/bin:$PATH"
+
+# Butler
+export PATH="$PATH:Volumes/Macave/software/butler"
