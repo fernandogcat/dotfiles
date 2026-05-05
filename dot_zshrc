@@ -23,3 +23,6 @@ unset file;
 
 # Starship
 eval "$(starship init zsh)"
+
+# Zoxide
+eval "$(zoxide init zsh)"

@@ -19,6 +19,11 @@ export EZA_COLORS='di=1;34'
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
+# Java & Android
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export ANDROID_HOME="/Volumes/Macave/software/android/sdk"
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+
 # Dotnet (installed manually, not via chezmoi, for use with https://github.com/chickensoft-games/GodotEnv)
 export PATH="$PATH:$HOME/.dotnet/tools"
 
