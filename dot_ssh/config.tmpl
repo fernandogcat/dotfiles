@@ -9,3 +9,6 @@ Host *
 
 Host github.com
   IdentityFile ~/.ssh/{{ .gitSigningKeyName }}
+
+# Local private hosts (not tracked by chezmoi)
+Include ~/.ssh/config.local
