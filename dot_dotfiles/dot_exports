@@ -43,4 +43,4 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Butler
-export PATH="$PATH:Volumes/Macave/software/butler"
+export PATH="$PATH:/Volumes/Macave/software/butler"
