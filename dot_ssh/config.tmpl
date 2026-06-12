@@ -11,4 +11,6 @@ Host github.com
   IdentityFile ~/.ssh/{{ .gitSigningKeyName }}
 
 # Local private hosts (not tracked by chezmoi)
+# `Host *` resets the context so the Include is top-level, not nested in the previous Host block.
+Host *
 Include ~/.ssh/config.local
