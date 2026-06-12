@@ -12,6 +12,11 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 # Starship
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
+# Zoxide: silence the chpwd_functions doctor warning that misfires in
+# non-interactive subshells, where chpwd_functions isn't populated even
+# though `zoxide init zsh` ran.
+export _ZO_DOCTOR=0
+
 # Eza
 export EZA_COLORS='di=1;34'
 
