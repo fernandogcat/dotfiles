@@ -12,6 +12,48 @@ function zipf() {
 	zip -r "$1".zip "$1" ;
 }
 
+# set-tab-context : name the current Ghostty tab after the project, and tint
+# the tab background (via OSC 11) for known projects so they're easy to spot.
+# Project list lives in ~/.config/shell/projects.local.zsh (untracked, machine-local).
+# Matches by path prefix; longest match wins.
+
+typeset -gA TAB_PROJECTS
+[[ -f ~/.config/shell/projects.local.zsh ]] && source ~/.config/shell/projects.local.zsh
+
+function set-tab-context() {
+	local name color prefix best_prefix=""
+	for prefix in "${(@k)TAB_PROJECTS}"; do
+		if [[ "$PWD" == "$prefix" || "$PWD" == "$prefix"/* ]]; then
+			if (( ${#prefix} > ${#best_prefix} )); then
+				best_prefix="$prefix"
+			fi
+		fi
+	done
+
+	if [[ -n "$best_prefix" ]]; then
+		local entry="${TAB_PROJECTS[$best_prefix]}"
+		name="${entry%%|*}"
+		color="${entry#*|}"
+	else
+		if name=$(git rev-parse --show-toplevel 2>/dev/null); then
+			name=${name:t}
+		else
+			name=${PWD:t}
+		fi
+		color=""
+	fi
+
+	print -Pn "\e]0;${name}\a"
+	if [[ -n "$color" ]]; then
+		print -Pn "\e]11;${color}\a"
+	else
+		print -Pn "\e]111\a"
+	fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd set-tab-context
+set-tab-context
+
 # extract : extract any file with this command.
 
 extract () {

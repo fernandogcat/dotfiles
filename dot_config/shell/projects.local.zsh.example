@@ -1,0 +1,21 @@
+# Per-project Ghostty tab context. Copy to projects.local.zsh (untracked) and edit.
+#
+#   cp ~/.config/shell/projects.local.zsh.example ~/.config/shell/projects.local.zsh
+#
+# Sourced from ~/.dotfiles/.functions by set-tab-context() on every chpwd.
+# Each entry maps a directory prefix to a tab name + background color.
+#
+# Format: TAB_PROJECTS[<path prefix>]="<tab name>|<color>"
+#   - path prefix: any directory; matches PWD by longest-prefix
+#   - tab name:    shown in the Ghostty tab title
+#   - color:       any string Ghostty accepts via OSC 11 (hex recommended)
+#
+# Colors are applied as the tab background, so prefer subtle tints close to
+# your theme's background. Examples below assume a dark theme.
+
+typeset -gA TAB_PROJECTS
+TAB_PROJECTS=(
+	"$HOME/code/work"      "work|#261a1a"
+	"$HOME/code/personal"  "personal|#1a1f26"
+	"$HOME/code/oss"       "oss|#1a2326"
+)

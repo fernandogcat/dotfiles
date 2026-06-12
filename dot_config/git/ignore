@@ -12,6 +12,12 @@
 .env
 !/.env.example
 
+# Machine-local files (never tracked), but keep .example templates
+
+*.local
+*.local.*
+!*.example
+
 # Node.js
 
 npm-debug.log*
