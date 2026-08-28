@@ -9,3 +9,4 @@ macos-titlebar-proxy-icon="hidden"
 cursor-style="underline"
 macos-titlebar-style="tabs"
 window-inherit-working-directory=false
+copy-on-select=clipboard
