@@ -180,6 +180,36 @@ disabled = true
 [zig]
 disabled = true
 
+[c]
+disabled = true
+
+[fortran]
+disabled = true
+
+[haskell]
+disabled = true
+
+[maven]
+disabled = true
+
+[mojo]
+disabled = true
+
+[odin]
+disabled = true
+
+[pixi]
+disabled = true
+
+[scala]
+disabled = true
+
+[terraform]
+disabled = true
+
+[xmake]
+disabled = true
+
 [docker_context]
 disabled = true
 
