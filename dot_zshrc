@@ -26,3 +26,6 @@ eval "$(starship init zsh)"
 
 # Zoxide
 eval "$(zoxide init zsh)"
+
+# Machine-local aliases/functions (untracked)
+[[ -f ~/.config/shell/aliases.local.zsh ]] && source ~/.config/shell/aliases.local.zsh
