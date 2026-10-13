@@ -2,6 +2,12 @@
 #!/bin/bash
 set -eufo pipefail
 
+{{/* Re-run when the machine-local bundle changes too, not only this script. */ -}}
+{{- $localBrewfile := joinPath .chezmoi.homeDir ".config/brew/Brewfile.local" -}}
+{{- if stat $localBrewfile }}
+# Brewfile.local hash: {{ include $localBrewfile | sha256sum }}
+{{- end }}
+
 brew bundle --file=/dev/stdin <<EOF
 brew "starship"
 brew "git"
@@ -17,13 +23,9 @@ brew "tlrc"
 brew "zoxide"
 brew "fzf"
 brew "mise"
-# has to be installed via AppStore to allow biometrics unlock
-# cask "bitwarden"
-cask "tuta-mail"
 cask "jordanbaird-ice"
 cask "obsidian"
 cask "syncthing-app"
-cask "synology-drive"
 cask "firefox"
 cask "brave-browser"
 cask "libreoffice"
@@ -35,8 +37,6 @@ cask "notion"
 cask "ghostty"
 cask "rectangle"
 cask "raycast"
-cask "discord"
-cask "plexamp"
 cask "monitorcontrol"
 cask "caffeine"
 cask "fork"
@@ -44,4 +44,10 @@ cask "vscodium"
 cask "cursor"
 cask "font-meslo-lg-nerd-font"
 EOF
+
+# Machine-local apps (untracked), e.g. services and accounts tied to this machine
+if [ -f "$HOME/.config/brew/Brewfile.local" ]; then
+  echo "🍺  Installing machine-local bundle"
+  brew bundle --file="$HOME/.config/brew/Brewfile.local"
+fi
 {{ end -}}

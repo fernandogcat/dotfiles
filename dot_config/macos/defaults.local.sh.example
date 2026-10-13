@@ -7,7 +7,13 @@
 #
 #   bash ~/.config/macos/defaults.local.sh
 #
-# Put here anything that names this machine: volumes, hostnames, local paths.
+# Put here anything that names this machine: volumes, hostnames, local paths,
+# and login items for apps tied to your accounts.
 
 # Screenshots folder
 # defaults write com.apple.screencapture location "$HOME/Pictures/Screenshots"
+
+# Extra login items (addLoginItem is defined by the setup script; guard for manual runs)
+# if type addLoginItem >/dev/null 2>&1; then
+#   addLoginItem "Some App"
+# fi

@@ -1,0 +1,12 @@
+# Machine-local Homebrew bundle. Copy to Brewfile.local (untracked) and edit.
+#
+#   cp ~/.config/brew/Brewfile.local.example ~/.config/brew/Brewfile.local
+#
+# Installed by the brew packages script after the shared bundle; the script
+# re-runs on `chezmoi apply` whenever this file changes.
+# Put here apps tied to accounts, services or hardware you don't want listed
+# in the shared bundle (cloud drives, chat, media servers, mail clients).
+
+# cask "some-cloud-drive"
+# cask "some-chat-app"
+# mas "Some App Store App", id: 123456789

@@ -14,7 +14,8 @@ $character
 symbol = ' '
 
 [username]
-show_always = true
+# Only shown when root or over SSH; keeps the local username out of screenshots
+show_always = false
 format='[$user]($style) [in](white bold) '
 style_user = "bold red"
 

@@ -100,17 +100,11 @@ defaults write com.apple.finder "ShowPathbar" -bool true
 
 echo "📱  Set 'Open at login' applications"
 
-loginItems=(
-  "Raycast"
-  "Rectangle"
-  "CleanShot X"
-  "Ice"
-  "Bitwarden"
-)
-
 existingLoginItems="$(osascript -e 'tell application "System Events" to get the name of every login item' 2>/dev/null || true)"
 
-for app in "${loginItems[@]}"; do
+# addLoginItem <App name> : idempotent; also available to the machine-local defaults file below
+addLoginItem() {
+  local app="$1"
   if [[ ", $existingLoginItems, " == *", $app, "* ]]; then
     echo "ℹ️  $app already in login items"
   elif [ -d "/Applications/$app.app" ]; then
@@ -119,6 +113,17 @@ for app in "${loginItems[@]}"; do
   else
     echo "❌  $app not found in /Applications"
   fi
+}
+
+loginItems=(
+  "Raycast"
+  "Rectangle"
+  "CleanShot X"
+  "Ice"
+)
+
+for app in "${loginItems[@]}"; do
+  addLoginItem "$app"
 done
 
 echo "🖱️  Use scroll gesture with the Ctrl (^) + Option (⌥) modifier key to zoom"
@@ -127,7 +132,7 @@ echo "🖱️  Use scroll gesture with the Ctrl (^) + Option (⌥) modifier key 
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true || echo "⚠️ 🆘  Failed to set closeViewScrollWheelToggle"
 defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 786432 || echo "⚠️ 🆘  Failed to set closeViewScrollWheelModifiersInt"
 
-# Machine-local defaults (untracked), e.g. paths on external volumes
+# Machine-local defaults (untracked), e.g. paths on external volumes or extra login items (addLoginItem "App")
 if [ -f ~/.config/macos/defaults.local.sh ]; then
   echo "💻  Apply machine-local defaults"
   source ~/.config/macos/defaults.local.sh
