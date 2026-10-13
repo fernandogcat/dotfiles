@@ -1,30 +1,7 @@
 {
-	"editor.wordWrap": "on",
-	"editor.fontFamily": "FiraCode-Regular",
-	"editor.fontWeight": "normal",
-	"editor.fontSize": 14,
-	"editor.formatOnType": true,
-	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true,
-	"editor.minimap.enabled": false,
-	"editor.wordBasedSuggestions": "off",
-	"files.autoSave": "afterDelay",
-	"files.trimFinalNewlines": true,
-	"security.workspace.trust.untrustedFiles": "open",
-	"window.zoomLevel": 1,
-	"window.confirmBeforeClose": "keyboardOnly",
-	"window.newWindowProfile": "Default",
-	"workbench.fontAliasing": "antialiased",
-	"workbench.editor.languageDetection": false,
-	"terminal.integrated.fontFamily": "MesloLGS Nerd Font Mono, monospace",
-	"godotTools.editorPath.godot3": "",
-	"godotTools.editorPath.godot4": "{{ .chezmoi.homeDir }}/Library/Application Support/godotenv/godot/bin/godot",
-	"godotTools.lsp.serverPort": 6005,
-	"git.openRepositoryInParentFolders": "always",
-	"gitlens.codeLens.enabled": false,
-	"gitlens.currentLine.enabled": false,
-	"debug.javascript.defaultRuntimeExecutable": {
-		"pwa-node": "node"
-	},
-	"editor.unicodeHighlight.nonBasicASCII": false,
+    // Shared editor settings (see .chezmoitemplates/ide-settings.json)
+{{ template "ide-settings.json" . }},
+    // VSCodium only
+    "editor.formatOnSave": true,
+    "editor.unicodeHighlight.nonBasicASCII": false
 }

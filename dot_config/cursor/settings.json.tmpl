@@ -1,61 +1,7 @@
 {
-    "editor.fontFamily": "FiraCode-Regular",
-    "editor.fontWeight": "normal",
-    "editor.fontSize": 14,
-    "editor.formatOnType": true,
-    "editor.formatOnPaste": true,
-    "editor.minimap.enabled": false,
-    "editor.wordBasedSuggestions": "off",
-    "editor.renderFinalNewline": "off",
-    "editor.accessibilitySupport": "off",
-    "editor.wordWrap": "on",
-    "files.autoSave": "afterDelay",
-    "files.trimFinalNewlines": true,
-    "files.exclude": {
-        "**/*.uid": true
-    },
-    "security.workspace.trust.untrustedFiles": "open",
-    "window.zoomLevel": 1,
-    "window.confirmBeforeClose": "keyboardOnly",
-    "window.newWindowProfile": "Default",
-    "window.autoDetectColorScheme": true,
-    "workbench.fontAliasing": "antialiased",
-    "workbench.editor.languageDetection": false,
-    "workbench.colorTheme": "Default Dark Modern",
-    "terminal.integrated.fontFamily": "MesloLGS Nerd Font Mono, monospace",
-    "godotTools.editorPath.godot3": "",
-    "godotTools.editorPath.godot4": "{{ .chezmoi.homeDir }}/Library/Application Support/godotenv/godot/bin/godot",
-    "godotTools.lsp.serverPort": 6005,
-    "git.openRepositoryInParentFolders": "always",
-    "gitlens.codeLens.enabled": false,
-    "gitlens.currentLine.enabled": false,
-    "debug.javascript.defaultRuntimeExecutable": {
-        "pwa-node": "node"
-    },
-    // materialshell theme colors
-    "workbench.colorCustomizations": {
-        "terminal.background": "#151515",
-        "terminal.foreground": "#A1B0B8",
-        "terminalCursor.foreground": "#ee6857",
-        "terminal.selectionBackground": "#323232",
-        "terminal.selectionForeground": "#CFCFCF",
-        "terminal.ansiBlack": "#252525",
-        "terminal.ansiRed": "#FF443E",
-        "terminal.ansiGreen": "#C3D82C",
-        "terminal.ansiYellow": "#FFC135",
-        "terminal.ansiBlue": "#42A5F5",
-        "terminal.ansiMagenta": "#D81B60",
-        "terminal.ansiCyan": "#00ACC1",
-        "terminal.ansiWhite": "#F5F5F5",
-        "terminal.ansiBrightBlack": "#505050",
-        "terminal.ansiBrightRed": "#FF443E",
-        "terminal.ansiBrightGreen": "#C3D82C",
-        "terminal.ansiBrightYellow": "#FFC135",
-        "terminal.ansiBrightBlue": "#42A5F5",
-        "terminal.ansiBrightMagenta": "#D81B60",
-        "terminal.ansiBrightCyan": "#00ACC1",
-        "terminal.ansiBrightWhite": "#F5F5F5"
-    },
+    // Shared editor settings (see .chezmoitemplates/ide-settings.json)
+{{ template "ide-settings.json" . }},
+    // Cursor only
     "cursor.general.globalCursorIgnoreList": [
         "**/.env",
         "**/credentials.json",
@@ -73,6 +19,5 @@
         "**/.ssh/id_*",
         "**/.cursor/mcp.json"
     ],
-    "cursor.cpp.disabledLanguages": [],
-    "dotnet.codeLens.enableReferencesCodeLens": false
+    "cursor.cpp.disabledLanguages": []
 }

@@ -1,0 +1,18 @@
+# Third-party files fetched by chezmoi, pinned to a commit or tag so updates are deliberate.
+# Bump a ref here and run `chezmoi apply` to upgrade (add `--refresh-externals` to force a re-download).
+
+# Ghostty themes (materialshell)
+[".config/ghostty/themes/materialshell-dark"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/carloscuesta/materialshell/628b3a3912dccbfa3cfc584157db4ce0117ee440/shell-color-themes/ghostty/materialshell-dark"
+
+[".config/ghostty/themes/materialshell-light"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/carloscuesta/materialshell/628b3a3912dccbfa3cfc584157db4ce0117ee440/shell-color-themes/ghostty/materialshell-light"
+
+# oh-my-zsh plugins
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/refs/tags/v0.7.1.tar.gz"
+    exact = true
+    stripComponents = 1
