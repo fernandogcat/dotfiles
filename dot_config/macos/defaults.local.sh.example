@@ -1,0 +1,13 @@
+# Machine-local macOS defaults. Copy to defaults.local.sh (untracked) and edit.
+#
+#   cp ~/.config/macos/defaults.local.sh.example ~/.config/macos/defaults.local.sh
+#
+# Sourced at the end of the system settings setup script. That script only runs
+# once per content change, so after editing this file apply it by hand:
+#
+#   bash ~/.config/macos/defaults.local.sh
+#
+# Put here anything that names this machine: volumes, hostnames, local paths.
+
+# Screenshots folder
+# defaults write com.apple.screencapture location "$HOME/Pictures/Screenshots"

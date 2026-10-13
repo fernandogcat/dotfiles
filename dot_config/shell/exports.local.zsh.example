@@ -1,0 +1,13 @@
+# Machine-local exports. Copy to exports.local.zsh (untracked) and edit.
+#
+#   cp ~/.config/shell/exports.local.zsh.example ~/.config/shell/exports.local.zsh
+#
+# Sourced from ~/.dotfiles/.exports before the Java & Android section, so
+# values set here override the defaults there.
+# Put here anything that names this machine: volumes, hostnames, local paths.
+
+# Android SDK location (default: $HOME/Library/Android/sdk)
+# export ANDROID_HOME="/path/to/android/sdk"
+
+# Extra tools outside $HOME
+# export PATH="$PATH:/path/to/tool"

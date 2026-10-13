@@ -15,7 +15,7 @@
 
 typeset -gA TAB_PROJECTS
 TAB_PROJECTS=(
-	"$HOME/code/work"      "work|#261a1a"
-	"$HOME/code/personal"  "personal|#1a1f26"
-	"$HOME/code/oss"       "oss|#1a2326"
+	"$HOME/code/project-a"  "project-a|#261a1a"
+	"$HOME/code/project-b"  "project-b|#1a1f26"
+	"$HOME/code/oss"        "oss|#1a2326"
 )

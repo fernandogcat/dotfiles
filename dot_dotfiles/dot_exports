@@ -24,23 +24,26 @@ export EZA_COLORS='di=1;34'
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
+# Machine-local exports (untracked), e.g. tools installed on external volumes.
+# Loaded here so the sections below can pick up its overrides.
+[[ -f ~/.config/shell/exports.local.zsh ]] && source ~/.config/shell/exports.local.zsh
+
 # Java & Android
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
-export ANDROID_HOME="/Volumes/External/software/android/sdk"
+export ANDROID_HOME="${ANDROID_HOME:-$HOME/Library/Android/sdk}"
 export PATH="$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 
 # Dotnet (installed manually, not via chezmoi, for use with https://github.com/chickensoft-games/GodotEnv)
 export PATH="$PATH:$HOME/.dotnet/tools"
 
-# Godot
-export GODOT="$(godotenv godot env path | sed 's/ /\\ /g')"
-export GODOT_VERSIONS="$(dirname "$GODOT")/../versions"
+# Godot (godotenv is installed by hand, see the Dotnet section, so skip until it exists)
+if command -v godotenv >/dev/null; then
+  export GODOT="$(godotenv godot env path | sed 's/ /\\ /g')"
+  export GODOT_VERSIONS="$(dirname "$GODOT")/../versions"
+fi
 
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
 
 # Local binaries
 export PATH="$HOME/.local/bin:$PATH"
-
-# Butler
-export PATH="$PATH:/Volumes/External/software/butler"

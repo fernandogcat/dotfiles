@@ -17,12 +17,11 @@ chflags nohidden ~/Library
 echo "🖼️  Set dark mode"
 defaults write NSGlobalDomain AppleInterfaceStyle Dark
 
-defaults write com.apple.screencapture location /Volumes/External/screenshots
-
 # Keyboard
 
-defaults delete com.apple.HIToolbox AppleEnabledInputSources
-defaults delete com.apple.HIToolbox AppleSelectedInputSources
+# `defaults delete` fails when the key does not exist yet (fresh machine), so don't abort on it
+defaults delete com.apple.HIToolbox AppleEnabledInputSources 2>/dev/null || true
+defaults delete com.apple.HIToolbox AppleSelectedInputSources 2>/dev/null || true
 
 # setup International
 
@@ -109,8 +108,12 @@ loginItems=(
   "Bitwarden"
 )
 
+existingLoginItems="$(osascript -e 'tell application "System Events" to get the name of every login item' 2>/dev/null || true)"
+
 for app in "${loginItems[@]}"; do
-  if [ -d "/Applications/$app.app" ]; then
+  if [[ ", $existingLoginItems, " == *", $app, "* ]]; then
+    echo "ℹ️  $app already in login items"
+  elif [ -d "/Applications/$app.app" ]; then
     osascript -e "tell application \"System Events\" to make login item at end with properties {name: \"$app\", path: \"/Applications/$app.app\", hidden:true}"
     echo "✅  $app added to login items"
   else
@@ -123,5 +126,11 @@ echo "🖱️  Use scroll gesture with the Ctrl (^) + Option (⌥) modifier key 
 
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true || echo "⚠️ 🆘  Failed to set closeViewScrollWheelToggle"
 defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 786432 || echo "⚠️ 🆘  Failed to set closeViewScrollWheelModifiersInt"
+
+# Machine-local defaults (untracked), e.g. paths on external volumes
+if [ -f ~/.config/macos/defaults.local.sh ]; then
+  echo "💻  Apply machine-local defaults"
+  source ~/.config/macos/defaults.local.sh
+fi
 
 {{ end -}}
