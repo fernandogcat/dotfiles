@@ -1,0 +1,6 @@
+{{- /* SSH signing: trust our own key so git can verify our commits locally. */ -}}
+{{- /* Empty until the key exists (it is created by the ssh key setup script). */ -}}
+{{- $pub := joinPath .chezmoi.homeDir ".ssh" (print .gitSigningKeyName ".pub") -}}
+{{- if stat $pub -}}
+{{ .email }} namespaces="git" {{ regexReplaceAll `^(\S+ \S+).*$` (include $pub | trim) "$1" }}
+{{- end }}
