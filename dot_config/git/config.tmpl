@@ -1,3 +1,4 @@
+{{- $pub := joinPath .chezmoi.homeDir ".ssh" (print .gitSigningKeyName ".pub") -}}
 [init]
   defaultBranch = main
 
@@ -107,7 +108,7 @@
   # Prevent showing files whose names contain non-ASCII symbols as unversioned.
   # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
   precomposeunicode = false
-  editor = cursor --wait
+  editor = {{ if eq .role "personal" }}cursor --wait{{ else }}vim{{ end }}
 
 [color]
   # Use colors in Git commands that are capable of colored output when
@@ -160,10 +161,12 @@
 
 [pull]
   rebase = true
+{{ if stat $pub -}}
 [commit]
   gpgsign = true
 [tag]
   gpgsign = true
+{{ end -}}
 [gpg]
   format = ssh
 [gpg "ssh"]

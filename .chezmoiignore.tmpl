@@ -1,2 +1,10 @@
 *.md
 LICENSE
+{{ if ne .role "personal" }}
+Library
+.config/ghostty
+.config/cursor
+.config/vscodium
+.config/macos
+.config/brew
+{{ end }}

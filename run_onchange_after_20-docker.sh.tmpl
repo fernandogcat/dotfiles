@@ -1,0 +1,29 @@
+{{ if eq .role "remote" -}}
+#!/bin/bash
+set -eufo pipefail
+
+if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
+  echo "✅  Docker already installed"
+  exit 0
+fi
+
+# Mint reports its own codename but Docker's repo only knows the Ubuntu one it is built on.
+# Debian derivatives (Raspberry Pi OS) use VERSION_CODENAME directly.
+. "${OS_RELEASE:-/etc/os-release}"
+case " ${ID} ${ID_LIKE:-} " in
+  *" ubuntu "*) distro=ubuntu; suite="${UBUNTU_CODENAME:-$VERSION_CODENAME}" ;;
+  *" debian "*) distro=debian; suite="$VERSION_CODENAME" ;;
+  *) echo "⛔  Unsupported distro for Docker's apt repo: $ID" >&2; exit 1 ;;
+esac
+echo "🐳  Installing Docker CE from download.docker.com/linux/$distro $suite (sudo)"
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL "https://download.docker.com/linux/$distro/gpg" | sudo gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$distro $suite stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+sudo apt-get update -qq
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo usermod -aG docker "$(id -un)"
+echo "ℹ️  $(id -un) added to the docker group: log out and back in before running docker without sudo"
+{{ end -}}

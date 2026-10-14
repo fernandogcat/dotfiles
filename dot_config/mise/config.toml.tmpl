@@ -1,0 +1,16 @@
+# CLI tools shared by every machine. chezmoi runs `mise install` when this file changes.
+# Bump a version here, `chezmoi apply`, done. Versions are pinned so all machines match.
+[tools]
+node = "24"
+chezmoi = "2.73.1"
+starship = "1.26.0"
+eza = "0.23.5"
+bat = "0.26.1"
+fzf = "0.74.5"
+zoxide = "0.10.0"
+delta = "0.20.1"
+age = "1.3.2"
+{{- /* tlrc publishes no linux arm64 build */}}
+{{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }}
+tlrc = "1.13.1"
+{{- end }}

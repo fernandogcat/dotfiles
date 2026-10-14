@@ -1,0 +1,18 @@
+{{ if eq .role "remote" -}}
+#!/bin/bash
+set -eufo pipefail
+
+{{/* Re-run when the untracked per-machine script changes, not only when this hook does. */ -}}
+{{- $hostLocal := joinPath .chezmoi.homeDir ".config/remote/host.local.sh" -}}
+{{- if stat $hostLocal }}
+# host.local.sh hash: {{ include $hostLocal | sha256sum }}
+{{- end }}
+
+hostLocal="$HOME/.config/remote/host.local.sh"
+if [ -f "$hostLocal" ]; then
+  echo "🏠  Running machine-local setup: $hostLocal"
+  (cd "$(dirname "$hostLocal")" && bash "$hostLocal")
+else
+  echo "ℹ️  No $hostLocal, nothing machine-specific to do"
+fi
+{{ end -}}

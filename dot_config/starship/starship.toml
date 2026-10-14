@@ -19,6 +19,11 @@ show_always = false
 format='[$user]($style) [in](white bold) '
 style_user = "bold red"
 
+[hostname]
+# Only over SSH, so a remote shell says which machine it is
+ssh_only = true
+style = "bold yellow"
+
 [git_branch]
 style="bold blue"
 format='[on](white bold) [$symbol$branch(:$remote_branch)]($style) '

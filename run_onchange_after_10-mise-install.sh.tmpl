@@ -1,0 +1,10 @@
+#!/bin/bash
+set -eufo pipefail
+
+{{/* Re-run whenever the tool list changes, not only when this script does. */ -}}
+# mise config hash: {{ include "dot_config/mise/config.toml.tmpl" | sha256sum }}
+
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+echo "🧰  Installing mise tools"
+mise install --yes
+mise ls

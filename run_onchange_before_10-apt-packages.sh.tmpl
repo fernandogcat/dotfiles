@@ -1,0 +1,22 @@
+{{ if eq .role "remote" -}}
+#!/bin/bash
+set -eufo pipefail
+
+pkgs=(zsh git curl vim unzip ca-certificates gnupg locales openssh-server rsync)
+missing=()
+for p in "${pkgs[@]}"; do
+  dpkg -s "$p" >/dev/null 2>&1 || missing+=("$p")
+done
+if [ "${#missing[@]}" -gt 0 ]; then
+  echo "📦  Installing: ${missing[*]} (sudo)"
+  sudo apt-get update -qq
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq "${missing[@]}"
+fi
+
+# The shell exports LC_ALL=en_US.UTF-8; a fresh install may not have generated it.
+if ! locale -a 2>/dev/null | grep -qi '^en_US.utf-\?8$'; then
+  echo "🌐  Generating en_US.UTF-8 locale (sudo)"
+  sudo sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+  sudo locale-gen
+fi
+{{ end -}}

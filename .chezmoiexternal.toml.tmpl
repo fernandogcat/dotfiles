@@ -1,6 +1,7 @@
 # Third-party files fetched by chezmoi, pinned to a commit or tag so updates are deliberate.
 # Bump a ref here and run `chezmoi apply` to upgrade (add `--refresh-externals` to force a re-download).
 
+{{ if eq .role "personal" -}}
 # Ghostty themes (materialshell)
 [".config/ghostty/themes/materialshell-dark"]
     type = "file"
@@ -9,6 +10,15 @@
 [".config/ghostty/themes/materialshell-light"]
     type = "file"
     url = "https://raw.githubusercontent.com/carloscuesta/materialshell/628b3a3912dccbfa3cfc584157db4ce0117ee440/shell-color-themes/ghostty/materialshell-light"
+
+{{ end -}}
+# oh-my-zsh itself, pinned to a commit (it has no releases). The plugin below lives inside it,
+# so this one is not `exact`: chezmoi must not delete custom/.
+[".oh-my-zsh"]
+    type = "archive"
+    url = "https://github.com/ohmyzsh/ohmyzsh/archive/964ddf789b022b6958b27d02d7fa54f552de21e9.tar.gz"
+    exact = false
+    stripComponents = 1
 
 # oh-my-zsh plugins
 [".oh-my-zsh/custom/plugins/zsh-autosuggestions"]

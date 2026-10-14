@@ -1,0 +1,38 @@
+{{ if eq .role "remote" -}}
+#!/bin/bash
+set -eufo pipefail
+
+# Key-only login on a plain ssh.service: socket activation ignores Port set in drop-ins,
+# and the port itself is machine-local (see the host-local hook), not part of this repo.
+if [ ! -s "$HOME/.ssh/authorized_keys" ]; then
+  echo "⛔  ~/.ssh/authorized_keys is missing or empty: refusing to disable password login." >&2
+  echo "    Copy a key first (ssh-copy-id from your other machine), then run chezmoi apply again." >&2
+  exit 1
+fi
+
+conf="${SSHD_DROPIN:-/etc/ssh/sshd_config.d/10-dotfiles.conf}"
+want=$'PasswordAuthentication no\nKbdInteractiveAuthentication no'
+changed=0
+if [ "$(sudo cat "$conf" 2>/dev/null || true)" != "$want" ]; then
+  echo "🔐  Writing $conf (sudo)"
+  printf '%s\n' "$want" | sudo tee "$conf" >/dev/null
+  changed=1
+fi
+
+# Never leave a drop-in that sshd cannot load: the next restart or reboot would start no sshd at all.
+# (sshd -t also needs its privilege separation dir, which only exists while sshd runs.)
+sudo mkdir -p "${SSHD_RUNDIR:-/run/sshd}"
+if ! sudo sshd -t; then
+  [ "$changed" = 1 ] && sudo rm -f "$conf" && echo "↩️  sshd rejected $conf, removed it again" >&2
+  exit 1
+fi
+
+if [ -d "${SYSTEMD_DIR:-/run/systemd/system}" ]; then
+  sudo systemctl disable --now ssh.socket >/dev/null 2>&1 || true
+  sudo systemctl enable ssh.service >/dev/null 2>&1
+  if [ "$changed" = 1 ] || ! systemctl is-active --quiet ssh.service; then
+    sudo systemctl restart ssh.service
+  fi
+  echo "✅  sshd: key-only, ssh.service active"
+fi
+{{ end -}}

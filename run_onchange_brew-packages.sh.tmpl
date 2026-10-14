@@ -9,19 +9,11 @@ set -eufo pipefail
 {{- end }}
 
 brew bundle --file=/dev/stdin <<EOF
-brew "starship"
 brew "git"
 brew "tree"
 # tried installing wireguard but these are command line tools, check wireguard in the appstore
 # brew "wireguard-go"
 brew "git-lfs"
-brew "bat"
-brew "git-delta"
-brew "eza"
-brew "age"
-brew "tlrc"
-brew "zoxide"
-brew "fzf"
 brew "mise"
 cask "jordanbaird-ice"
 cask "obsidian"

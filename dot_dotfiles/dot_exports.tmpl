@@ -28,6 +28,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 # Loaded here so the sections below can pick up its overrides.
 [[ -f ~/.config/shell/exports.local.zsh ]] && source ~/.config/shell/exports.local.zsh
 
+{{ if eq .role "personal" -}}
 # Java & Android
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export ANDROID_HOME="${ANDROID_HOME:-$HOME/Library/Android/sdk}"
@@ -45,5 +46,6 @@ fi
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
 
+{{ end -}}
 # Local binaries
 export PATH="$HOME/.local/bin:$PATH"

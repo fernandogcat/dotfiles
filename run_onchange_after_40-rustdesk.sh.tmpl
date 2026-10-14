@@ -1,0 +1,21 @@
+{{ if eq .role "remote" -}}
+#!/bin/bash
+set -eufo pipefail
+
+RUSTDESK_VERSION="1.5.0"
+arch="{{ if eq .chezmoi.arch "arm64" }}aarch64{{ else }}x86_64{{ end }}"
+
+if dpkg-query -W -f='${Version}' rustdesk 2>/dev/null | grep -q "^$RUSTDESK_VERSION"; then
+  echo "✅  RustDesk $RUSTDESK_VERSION already installed"
+  exit 0
+fi
+
+echo "🖥️  Installing RustDesk $RUSTDESK_VERSION ($arch) (sudo)"
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+chmod 755 "$tmp"
+curl -fsSL -o "$tmp/rustdesk.deb" "https://github.com/rustdesk/rustdesk/releases/download/$RUSTDESK_VERSION/rustdesk-$RUSTDESK_VERSION-$arch.deb"
+chmod 644 "$tmp/rustdesk.deb"
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq "$tmp/rustdesk.deb"
+echo "ℹ️  Set the permanent password and enable direct IP access in the RustDesk app (Settings > Security); the service is already enabled"
+{{ end -}}
