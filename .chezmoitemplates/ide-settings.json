@@ -20,7 +20,6 @@
     "window.autoDetectColorScheme": true,
     "workbench.fontAliasing": "antialiased",
     "workbench.editor.languageDetection": false,
-    "workbench.colorTheme": "Default Dark Modern",
     "terminal.integrated.fontFamily": "MesloLGS Nerd Font Mono, monospace",
     "godotTools.editorPath.godot3": "",
     "godotTools.editorPath.godot4": "{{ .chezmoi.homeDir }}/Library/Application Support/godotenv/godot/bin/godot",

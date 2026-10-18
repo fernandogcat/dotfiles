@@ -1,7 +1,8 @@
 {
     // Shared editor settings (see .chezmoitemplates/ide-settings.json)
 {{ template "ide-settings.json" . }},
-    // VSCodium only
+    // VSCodium only (its built-in theme ids dropped the "Default " prefix)
+    "workbench.colorTheme": "Dark Modern",
     "editor.formatOnSave": true,
     "editor.unicodeHighlight.nonBasicASCII": false
 }

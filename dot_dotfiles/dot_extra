@@ -1,8 +1,13 @@
 # Mise
 eval "$(mise activate zsh)"
 
-# fzf
-eval "$(fzf --zsh)"
+# fzf (deferred to the first prompt to speed up shell startup)
+function _fzf_defer() {
+  eval "$(fzf --zsh)"
+  add-zsh-hook -d precmd _fzf_defer
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _fzf_defer
 
 # History
 HISTFILE=~/.zsh_history
