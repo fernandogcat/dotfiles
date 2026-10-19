@@ -20,6 +20,16 @@ fi
 
 # System-level per-user unit: starts at boot without a login. Devices and folders are set in the web UI (localhost:8384).
 if [ -d /run/systemd/system ]; then
+  # The packaged unit only waits for network.target: start once the network is up, so DNS works for relays and discovery.
+  dropIn=/etc/systemd/system/syncthing@.service.d/10-network-online.conf
+  want=$'[Unit]\nWants=network-online.target\nAfter=network-online.target'
+  if [ "$(cat "$dropIn" 2>/dev/null)" != "$want" ]; then
+    sudo install -d -m 0755 "$(dirname "$dropIn")"
+    printf '%s\n' "$want" | sudo tee "$dropIn" >/dev/null
+    sudo systemctl daemon-reload
+    echo "✅  syncthing@ waits for network-online.target"
+  fi
+
   sudo systemctl enable --now "syncthing@$(id -un)" >/dev/null
   echo "✅  syncthing@$(id -un) enabled"
 
