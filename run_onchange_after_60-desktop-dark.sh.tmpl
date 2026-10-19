@@ -1,0 +1,31 @@
+{{ if eq .role "remote" -}}
+#!/bin/bash
+set -eufo pipefail
+
+# Dark desktop on boxes that have one, and apps told to prefer dark (GTK4/libadwaita, Electron, browsers).
+command -v gsettings >/dev/null || exit 0
+
+# Use the logged-in session's bus so the change shows at once; otherwise a throwaway bus writes straight to dconf.
+bus="/run/user/$(id -u)/bus"
+if [ -S "$bus" ]; then gs() { DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" gsettings "$@"; }
+else gs() { dbus-run-session -- gsettings "$@"; }
+fi
+
+# Sets a key only when its schema exists (Cinnamon vs GNOME) and the value differs.
+gsSet() {
+  gs writable "$1" "$2" >/dev/null 2>&1 || return 0
+  [ "$(gs get "$1" "$2")" = "'$3'" ] || { gs set "$1" "$2" "$3"; echo "🌙  $1 $2 = $3"; }
+}
+
+gsSet org.gnome.desktop.interface color-scheme prefer-dark
+gsSet org.x.apps.portal color-scheme prefer-dark
+
+if [ -d /usr/share/themes/Mint-Y-Dark-Aqua ]; then
+  gsSet org.cinnamon.desktop.interface gtk-theme Mint-Y-Dark-Aqua
+  gsSet org.gnome.desktop.interface gtk-theme Mint-Y-Dark-Aqua
+  gsSet org.cinnamon.desktop.wm.preferences theme Mint-Y-Dark
+  gsSet org.cinnamon.theme name Mint-Y-Dark-Aqua
+elif [ -d /usr/share/themes/Adwaita-dark ]; then
+  gsSet org.gnome.desktop.interface gtk-theme Adwaita-dark
+fi
+{{ end -}}
