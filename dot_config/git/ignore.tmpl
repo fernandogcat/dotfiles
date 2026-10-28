@@ -24,3 +24,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+{{- $local := joinPath .chezmoi.homeDir ".config/git/ignore.local" }}
+{{- if stat $local }}
+
+# Machine-local extras (appended from ~/.config/git/ignore.local)
+
+{{ include $local }}
+{{- end }}
